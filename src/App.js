@@ -2,27 +2,44 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+
+let tictactoe = {
+  board : [0,0,0,0,0,0,0,0,0],
+  id : 0,
+}
+
+
 class App extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = tictactoe;
+    this.onDismiss =  this.onDismiss.bind(this);
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <div className="grid">
+          <div className="cell"></div>
+          <div className="cell"></div>
+          <div className="cell"></div>
+          <div className="cell"></div>
+          <div className="cell"></div>
+          <div className="cell"></div>
+          <div className="cell"></div>
+          <div className="cell"></div>
+          <div className="cell"></div>
+        </div>
       </div>
     );
   }
+
+  onDismiss(id){
+
+    }
+
 }
+
+
 
 export default App;
