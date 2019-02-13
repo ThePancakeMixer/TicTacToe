@@ -63,7 +63,7 @@ class App extends Component {
               <button className="cell" onClick={()=>this.onDismiss(item.index)} type="button" >{item.isSet}</button>
             )
 
-          })}
+          }.bind(this))}
         </div>
       </div>
     );
