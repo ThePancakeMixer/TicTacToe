@@ -35,23 +35,24 @@ const tictactoe = [
   }
 ]
 
-
-
 class App extends Component {
 
   constructor(props){
     super(props);
     this.state = {
       list:tictactoe,
-    }
+      turn:true,
+    };
     this.onDismiss = this.onDismiss.bind(this);
+    
   }
 
   onDismiss(e){
     console.log(e);
     const isNotId = item => item.index !== e;
-    const updatedList = this.state.list.filter(isNotId);
-    this.setState({list:updatedList});
+    this.state.list[e].isSet = this.state.turn?"X":"O";
+    this.state.turn = !this.state.turn;
+    this.setState(this.state);
   }
 
   render() {
