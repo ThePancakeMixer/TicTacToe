@@ -50,7 +50,17 @@ class App extends Component {
     this.onDismiss = this.onDismiss.bind(this);
     this.serialize = this.serialize.bind(this);
     this.checkForWin = this.checkForWin.bind(this);
+    this.resetBoard = this.resetBoard.bind(this);
+  }
 
+  resetBoard(){
+    this.state.list.forEach(function(item){
+      item.forEach(function(item2){
+        item2.isSet = "";
+      });
+    });
+    this.state.winner = "";
+    this.setState(this.state);
   }
 
 
@@ -60,7 +70,6 @@ class App extends Component {
 
     var chars_toCheck = ['O','X'];
 
-    let checker = false;
 
 
     for(let j=0;j<2;j++){
@@ -79,8 +88,6 @@ class App extends Component {
         return char;
       }
     }
-
-
 
 
 
@@ -103,6 +110,8 @@ class App extends Component {
   onDismiss(e){
     let row = Math.floor(e/3);
     let col = e%3;
+    if(this.state.list[row][col].isSet!=="")
+      return;
     this.state.list[row][col].isSet = this.state.turn?"X":"O";
     this.state.turn = !this.state.turn;
     this.state.winner = this.checkForWin();
@@ -123,6 +132,7 @@ class App extends Component {
         </div>
 
         <h1>{this.state.winner===""?"":"Winner is " + this.state.winner}</h1>
+        <button onClick={()=>this.resetBoard()}>Reset Board</button>
       </div>
     );
   }
